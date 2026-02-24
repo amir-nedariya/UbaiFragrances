@@ -3,7 +3,7 @@ import { createRazorpayOrder, verifyPayment } from "../controllers/paymentContro
 import adminAuth from "../middleware/adminAuth.js";
 const router = express.Router();
 
-router.post("/create", adminAuth, createRazorpayOrder);
+router.post("/create", createRazorpayOrder);
 router.post("/verify", adminAuth, verifyPayment);
 
 export default router;
