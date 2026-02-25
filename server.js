@@ -15,7 +15,7 @@ connectDB();
 
 const app = express();
 
-// ✅ FIXED CORS
+//  FIXED CORS
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://ubaifragrances.netlify.app"],
@@ -25,11 +25,18 @@ app.use(
   })
 );
 
-// ✅ parse JSON + forms
+// parse JSON + forms
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ API routes
+app.get("/healthz", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  });
+});
+// API routes
 app.use("/api/admin", adminAuthRoutes);
 app.use("/api/banners", bannerRoutes);
 app.use("/api/products", productRoutes);
